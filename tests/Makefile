@@ -133,6 +133,8 @@ ifndef NO_SIM
 		--namespace $(HELM_NAMESPACE) \
         --tiller-namespace $(HELM_NAMESPACE) \
         --install build/orbit-simulator/charts/orbit-simulator \
+		--set simulator.image.repository=gguiulfo/orbit-sim \
+		--set simulator.image.tag=finally \
         --set simulator.shim.cloudserver_release=$(ZENKO_HELM_RELEASE) \
         --wait $(shell ../eve/workers/ci_env.sh set)
 endif
