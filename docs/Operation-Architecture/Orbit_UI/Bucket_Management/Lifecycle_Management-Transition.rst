@@ -3,7 +3,8 @@ Object Lifecycle Management: Transition
 
 **Prerequisite:** You must have established a bucket with at least one object
 in it to transition data from, and another bucket to send transitioned data to.
-To use 
+
+To establish a lifecycle transition rule:
 
 #. From anywhere in Orbit, click the **WORKFLOWS > Bucket
    Lifecycle** tab in the left navbar.
@@ -22,10 +23,10 @@ To use
 
    |image3|
 
-   You may enter a distinct directory or subdirectory to which the rule applies.
-   Enter an expiration time span and a deletion time span.
-   These follow the bucket and enforce expiration and deletion.
-   You may also add a comment about this expiration rule.
+   You may name a directory or subdirectory to which the rule applies. Enter
+   a time span after the object's current version was last changed and specify
+   a location to which it shall be moved. You can also add a comment about the
+   transition rule.
 
    Click **Save**.
 
@@ -33,13 +34,12 @@ To use
 
    |image4|
 
-   Zenko will enforce these rules on this bucket. If replication is
-   configured, any change of state to objects in this bucket can be
-   replicated to buckets on other clouds.
+   Zenko will enforce these rules on this bucket. If replication is configured, 
+   any change of state to objects in this bucket can be replicated to buckets 
+   on other clouds.
 
 Versioning logic precludes simply deleting an object: that day’s object
-is deleted, but all others remain. See warning at “Deleting Files,” on
-page 1.
+is deleted, but earlier versions remain. See warning at :ref:`Deleting Objects<deleting-objects>`.
 
 .. |image0| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_select.png
 .. |image1| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_bucket_select.png
@@ -47,7 +47,7 @@ page 1.
 .. |image2| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_new_rule.png
    :scale: 35 %
    :align: middle
-.. |image3| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_rule.png
-   :class: FiftyPercent
+.. |image3| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_transition_rule.png
+   :scale: 50 %
 .. |image4| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_rule_success.png
    :class: OneHundredPercent
