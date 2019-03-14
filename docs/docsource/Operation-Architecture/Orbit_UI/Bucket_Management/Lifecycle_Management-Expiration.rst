@@ -2,7 +2,7 @@ Object Lifecycle Management
 ===========================
 
 **Prerequisite:** You must have established at least one bucket.
-01234567890123456789012345678901234567890123456789012345678901234567890123456789
+
 #. From anywhere in Orbit, click the **WORKFLOWS > Bucket Lifecycle** tab in 
    the left navbar.
 
