@@ -170,7 +170,8 @@ stages:
           # Building the latex twice to catch up the reference
           tox --workdir /tmp/tox -e docs -- latexpdf BUILDDIR="%(prop:builddir)s/build/artifacts"
           tox --workdir /tmp/tox -e docs -- latexpdf BUILDDIR="%(prop:builddir)s/build/artifacts"
-        workdir: docs/
+          sleep 600
+        workdir: build/docs
 
     - Upload:
         name: Upload documentation
