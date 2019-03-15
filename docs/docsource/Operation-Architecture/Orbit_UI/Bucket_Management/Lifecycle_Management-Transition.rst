@@ -17,11 +17,13 @@ To establish a lifecycle transition rule:
 
 #. Choose a bucket and pick **Add New Rule > Transition**
 
-   |image2|
+   .. image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_new_rule.png
+      :scale: 75 %
+      :align: center
 
 #. The **Add New Transition Rule** dialog displays:
 
-   |image3|
+   .. image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_transition_rule.png
 
    You may name a directory or subdirectory to which the rule applies. Enter
    a time span after the object's current version was last changed and specify
@@ -44,10 +46,5 @@ is deleted, but earlier versions remain. See warning at :ref:`Deleting Objects<d
 .. |image0| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_select.png
 .. |image1| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_bucket_select.png
    :class: OneHundredPercent
-.. |image2| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_new_rule.png
-   :scale: 35 %
-   :align: middle
-.. |image3| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_transition_rule.png
-   :scale: 50 %
 .. |image4| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_rule_success.png
    :class: OneHundredPercent

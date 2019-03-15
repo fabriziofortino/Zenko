@@ -1,5 +1,5 @@
-Object Lifecycle Management
-===========================
+Object Lifecycle Management: Expiration
+=======================================
 
 **Prerequisite:** You must have established at least one bucket.
 
@@ -14,11 +14,15 @@ Object Lifecycle Management
 
 #. Choose a bucket and pick **Add New Rule > Expiration**
 
-   |image2|
+   .. image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_new_rule.png
+      :scale: 75 %
+      :align: center
 
 #. The **Add New Expiration Rule** dialog displays:
 
-   |image3|
+   .. image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_expiration_rule.png
+      :scale: 50 %
+      :align: center
 
    You may enter a distinct directory or subdirectory to which the rule applies.
    Enter an expiration time span and a deletion time span.
@@ -42,9 +46,5 @@ page 1.
 .. |image0| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_select.png
 .. |image1| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_bucket_select.png
    :class: OneHundredPercent
-.. |image2| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_new_rule.png
-   :scale: 35 % 
-.. |image3| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_add_expiration_rule.png
-   :scale: 50 %
 .. |image4| image:: ../../Resources/Images/Orbit_Screencaps/Orbit_lifecycle_rule_success.png
    :class: OneHundredPercent
