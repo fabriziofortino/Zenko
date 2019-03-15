@@ -36,7 +36,9 @@ Create a fully qualified pfsd name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "cosmos.pfsd.fullname" -}}
-{{- if .Values.pfsd.fullnameOverride -}}
+{{- if .Values.fullnameOverride -}}
+{{- printf "%s-%s" .Values.fullnameOverride "cosmos-pfsd" | trunc 63 | trimSuffix "-" -}}
+{{- else if .Values.pfsd.fullnameOverride -}}
 {{- .Values.pfsd.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
@@ -53,7 +55,9 @@ Create a fully qualified pfsd name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "cosmos.rclone.fullname" -}}
-{{- if .Values.rclone.fullnameOverride -}}
+{{- if .Values.fullnameOverride -}}
+{{- printf "%s-%s" .Values.fullnameOverride "cosmos-rclone" | trunc 63 | trimSuffix "-" -}}
+{{- else if .Values.rclone.fullnameOverride -}}
 {{- .Values.rclone.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
@@ -89,3 +93,14 @@ Create storage class name
 {{- define "cosmos.storageclass.name" -}}
 {{- default (include "cosmos.fullname" . ) .Values.persistentVolume.storageClass -}}
 {{- end -}}
+
+{{/*
+The standard labels are frequently used in metadata.
+*/ -}}
+{{- define "cosmos.labels" -}}
+app: {{ template "cosmos.name" . }}
+chart: {{ template "cosmos.chart" . }}
+heritage: {{ .Release.Service | quote }}
+release: {{ .Release.Name | quote }}
+{{- end -}}
+

@@ -53,6 +53,7 @@ The following table lists the configurable parameters of the Cosmos chart and th
 | `rclone.image.repository` | rclone image repository | `zenko/rclone` |
 | `rclone.image.tag` | rclone image tag | `1.45` |
 | `rclone.image.pullPolicy` | rclone image pull policy | `IfNotPresent` |
+| `rclone.initialIngestion` | launches a post-install job to begin ingestion | `true` |
 | `rclone.suspend` | Enables/disables the cronjob | `false` |
 | `rclone.schedule` | rclone CronJob schedule | `*/10 * * * *` |
 | `rclone.successfulJobsHistory` | rclone CronJob successful job history | `1` |
@@ -134,8 +135,7 @@ persistentVolume:
       path: ${NFS_EXPORT_PATH}
       readOnly: false
     # Any valid nfs mount option can be listed here
-    mountOptions:
-      - nfsvers=3
+    mountOptions: "nfsvers=3,rw"
 EOF
 ```
 
@@ -209,6 +209,8 @@ persistentVolume:
     nfs:
       server: 10.100.1.42 # IP of your NFS server
       path: /data # NFS export
+    # Any valid nfs mount option can be listed here
+    mountOptions: "nfsvers=3,rw"
 EOF
 ```
 
@@ -220,10 +222,11 @@ $ helm install --name ${COSMOS_RELEASE_NAME} . -f remoteValues.yaml
 
 ## Rclone CronJob
 
-This chart deploys a Kubernetes CronJob which will periodically launch rclone jobs with the
-purpose of syncing metadata. The time at which this job runs can be configured through the
-`rclone.schedule` field in the `values.yaml` file. Additionally, you can manually create a
-jobs at will with the following command:
+This chart deploys a Kubernetes Job at install to immediately begin a metadata
+sync. Additionally, a Kubernetes CronJob is deployed, which periodically
+launches rclone jobs to sync any additional metadata changes. The job schedule
+can be configured with the ``rclone.schedule`` field in the ``values.yaml``
+file. However, to manually trigger the job run the following command:
 
 ```sh
 kubectl create job my-job-name --from=cronjob/my-release-cosmos-rclone

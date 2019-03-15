@@ -40,6 +40,7 @@ rclone:
     tag: 1.45
     pullPolicy: IfNotPresent
 
+  initialIngestion: true
   suspend: false
   schedule: "0 */12 * * *"
   successfulJobsHistory: 1
@@ -72,9 +73,7 @@ persistentVolume:
     #   server: 10.100.1.42
     #   path: /data
     #   readOnly: false
-    # mountOptions:
-    # - hard
-    # - nfsvers=4.1
+    # mountOptions: "hard,nfsvers=4.1"
   accessModes:
     - ReadWriteMany
   size: 1Gi

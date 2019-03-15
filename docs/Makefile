@@ -4,24 +4,25 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = Zenko-Operations
+SPHINXPROJ    = Zenko
 SOURCEDIR     = .
 BUILDDIR      = _build
 
 ROOTDIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 DOCKER=docker
-BUILDERNAME=zenko-operations
-BUILDERIMAGE="$(ROOTDIR)/.."
+BUILDERNAME=zenko-docs
+BUILDERIMAGE="$(ROOTDIR)"
 BUILDERDOCKERFILE=./Dockerfile
 BUILDERHOME=/usr/src/zenko
 
 .PHONY: build shell help Makefile
 
 build:
+	@echo $(ROOTDIR) $(BUILDERIMAGE)
 	@$(DOCKER) build -t $(BUILDERNAME):latest -f $(BUILDERDOCKERFILE) $(BUILDERIMAGE)
 
 shell: build
-	@$(DOCKER) run -it --rm -v "$(ROOTDIR)/..:$(BUILDERHOME)" --entrypoint=bash $(BUILDERNAME)
+	@$(DOCKER) run -it --rm -v "$(ROOTDIR):$(BUILDERHOME)" --entrypoint=bash $(BUILDERNAME)
 
 # Put it first so that "make" without argument is like "make help".
 help:

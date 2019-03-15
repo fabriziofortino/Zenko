@@ -3,11 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ template "cosmos.rclone.fullname" . }}
   labels:
-    app: {{ template "cosmos.name" . }}
-    chart: {{ template "cosmos.chart" . }}
     component: rclone
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+{{ include "cosmos.labels" . | indent 4 }}
 data:
   rclone.conf: |-
     [cloudserver]
@@ -16,3 +13,4 @@ data:
     env_auth = true
     endpoint = {{ .Values.rclone.remote.endpoint }}
     location_constraint = {{ .Values.rclone.remote.region }}
+    acl = bucket-owner-full-control

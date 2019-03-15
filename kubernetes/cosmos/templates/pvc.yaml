@@ -4,10 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ template "cosmos.fullname" . }}
   labels:
-    app: {{ template "cosmos.name" . }}
-    chart: {{ template "cosmos.chart" . }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+{{ include "cosmos.labels" . | indent 4 }}
 spec:
   accessModes:
 {{- range .Values.persistentVolume.accessModes }}
@@ -17,4 +14,5 @@ spec:
     requests:
       storage: {{ .Values.persistentVolume.size | quote }}
   storageClassName: {{ template "cosmos.storageclass.name" . }}
+  volumeName: {{ template "cosmos.fullname" . }}
 {{- end }}
