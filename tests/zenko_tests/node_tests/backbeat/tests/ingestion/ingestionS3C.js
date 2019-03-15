@@ -59,6 +59,22 @@ describe('Ingestion from RING S3C to Zenko', function() {
                     this.test.ingestionDestBucket, this.test.key, next),
             ], done);
         });
+
+        it('should ingestion object tags', function itF(done) {
+            return async.series([
+                next => ringS3CUtils.putObject(ingestionSrcBucket,
+                    this.test.key, Buffer.alloc(1), next),
+                next => scalityUtils.createIngestionBucket(
+                    this.test.ingestionDestBucket, location, next),
+                next => scalityUtils.compareObjectsRINGS3C(ingestionSrcBucket,
+                    this.test.ingestionDestBucket, this.test.key, next),
+                next => scalityUtils.putObjectTagging(ingestionSrcBucket,
+                    this.test.key, undefined, next),
+                next => scalityUtils.compareObjectTagsRINGS3C(ingestionSrcBucket,
+                    this.test.ingestionDestBucket, this.test.key, undefined,
+                    undefined, next),
+            ], done);
+        });
     });
 
     describe('OOB updates for RING S3C bucket', () => {

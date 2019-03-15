@@ -33,6 +33,22 @@ class IngestionUtility {
         }, cb);
     }
 
+    putObjectTagging(bucketName, key, versionId, cb) {
+        this.s3.putObjectTagging({
+            Bucket: bucketName,
+            Key: key,
+            VersionId: versionId,
+            Tagging: {
+                TagSet: [
+                    {
+                        Key: 'object-tag-key',
+                        Value: 'object-tag-value',
+                    },
+                ],
+            },
+        }, cb);
+    }
+
     deleteObject(bucketName, key, versionId, cb) {
         console.log('deleting  object', cb);
         this.s3.deleteObject({
@@ -174,6 +190,14 @@ class IngestionUtility {
             return cb();
         });
     }
+
+    // compareObjectTagsRINGS3C(srcBucket, destBucket, key, zenkoVersionId,
+    //     s3cVersionId, cb) {
+    //     return async.series([
+    //         next => this.waitUntilIngested(srcBucket, key, zenkoVersionId, next),
+    //         next => this.
+    //     ])
+    // }
 }
 
 module.exports = IngestionUtility;
